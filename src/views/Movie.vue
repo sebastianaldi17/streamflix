@@ -1,21 +1,27 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="12" sm="3">
-        <img :src="`${poster_src}`" class="movieimage" />
-      </v-col>
-      <v-col cols="12" sm="9">
-        <p class="text-h4">{{ title }}</p>
-        <p class="text-body-1">Sinopsis:</p>
-        <p class="text-body-1">{{ desc }}</p>
-        <p class="text-body-1">Durasi: {{ duration }} menit</p>
-        <p class="text-body-1">Ulasan: {{ rating }} dari 10</p>
-        <p class="text-body-1">Harga: {{ priceAsString() }}</p>
-        <p class="text-body-1" v-if="!purchased">Anda belum memiliki film ini.</p>
-        <p class="text-body-1" v-else>Anda telah membeli film ini.</p>
-        <v-btn class="primary" v-on:click="purchaseFilm">Beli film</v-btn>
-      </v-col>
-    </v-row>
+    <v-sheet>
+      <v-row>
+        <v-col cols="12" sm="3">
+          <img :src="`${poster_src}`" class="movieimage" />
+        </v-col>
+        <v-col cols="12" sm="9">
+          <p class="text-h4">{{ title }}</p>
+          <p class="text-body-1">Sinopsis:</p>
+          <p class="text-body-1">{{ desc }}</p>
+          <p class="text-body-1">Durasi: {{ duration }} menit</p>
+          <p class="text-body-1">Ulasan: {{ rating }} dari 10</p>
+          <p class="text-body-1">Harga: {{ priceAsString() }}</p>
+          <v-chip style="display: block; width: max-content; margin:8px" v-if="purchased" color="green">
+            Anda telah membeli film ini.
+          </v-chip>
+          <v-chip style="display: block; width: max-content; margin:8px" v-else color="red">
+            Anda belum membeli film ini.
+          </v-chip>
+          <v-btn class="primary" v-on:click="purchaseFilm">Beli film</v-btn>
+        </v-col>
+      </v-row>
+    </v-sheet>
 
     <v-row>
       <p class="text-h5">Pemeran:</p>
@@ -30,7 +36,7 @@
     </v-row>
 
     <v-row>
-      <p class="text-h5">Film serupa:</p>
+      <p class="text-h5">Film serupa:</p> 
       <v-slide-group show-arrows>
         <v-slide-item v-for="movie in similar" :key="movie.id">
           <v-card class="mx-2" elevation="2" width="300">
@@ -61,8 +67,6 @@ import {API_KEY} from '../Key'
 
 export default {
   data: () => ({
-    // Needed infos:
-    // Indicator owned/not
     title: "",
     desc: "",
     poster_src: "",

@@ -1,9 +1,5 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div> -->
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <a href='/' class='mainlink'>
@@ -50,13 +46,13 @@ export default {
     }
   },
   mounted() {
-    console.log("Mouted on App.vue is called")
+    // console.log("Mouted on App.vue is called")
     if(localStorage.getItem("cash") === null) {
-      console.log("Cash value not detected, setting to 100000")
+      // console.log("Cash value not detected, setting to 100000")
       this.cash = 100000
       localStorage.setItem("cash", 100000)
     } else {
-      console.log("Existing cash value detected")
+      // console.log("Existing cash value detected")
       this.cash = localStorage.getItem("cash")
     }
   }
@@ -68,24 +64,10 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  //text-align: center;
   color: #2c3e50;
   background-color: #FBAB7E;
   background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
 
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 
 .mainlink {
